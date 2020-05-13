@@ -113,7 +113,7 @@ namespace Converter
                             Nykredit nykredit  = new Nykredit(lines, logger);
                             numberOfSupoerPortRecords += nykredit.Process(ref emailBody, ref debugLevel, ref success, args[1] + "\\" + date, banks[i]);
                         }
-                        else if ((lines[0].IndexOf("\"REC-TYPE\";") == 0) || (lines[0].IndexOf("REC-TYPE;") == 0))
+                        else if ((lines[0].IndexOf("\"KONTOEJER\";") == 0) || (lines[0].IndexOf("KONTOEJER;") == 0))
                         {
                             BankData jydskeBank = new BankData(lines, ref fondCode, logger);
                             numberOfSupoerPortRecords += jydskeBank.Process(ref emailBody, ref debugLevel, ref success, args[1] + "\\" + date, banks[i]);
@@ -141,7 +141,7 @@ namespace Converter
             impRecord.writeTail(args[1] + "\\" + date, numberOfSupoerPortRecords);
 
             logger.Write("", true);
-            logger.Write("---- Converted successfully ----", true);
+            logger.Write("---- Konto successfully ----", true);
             logger.Write("Generated superport file in : "+ args[1] + "\\" + date, true);
             logger.Write("                        has : " + numberOfSupoerPortRecords + " records.", true);
             logger.Write("---- Ended ---------------------", true);
@@ -152,8 +152,8 @@ namespace Converter
                 Environment.Exit(2);
             }
 
-            email.Send("Superport converter converted " + numberOfSupoerPortRecords + " records", 
-                "Converter ended sucessfully, and converted " + numberOfSupoerPortRecords + " records.");
+            email.Send("Superport Konto converted " + numberOfSupoerPortRecords + " records", 
+                "Konto ended sucessfully, and converted " + numberOfSupoerPortRecords + " records.");
         }
     }
 }
