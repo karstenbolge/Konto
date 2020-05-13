@@ -14,7 +14,7 @@ namespace Converter
 
         private bool isAnul(string anul)
         {
-            return annuls.Find(x => x.CompareTo( anul) == 0) != null;
+            return annuls.Find(x => x.CompareTo(anul) == 0) != null;
         }
 
         public BankData(String[] lines, ref FondCode fondCode, Logger l)
@@ -43,19 +43,15 @@ namespace Converter
                         logger.WriteFields(fields);
                     }
 
-                    if (fields[0].CompareTo("KS") == 0)
-                    {
-                        kontoAfsteminger++;
-                        ImpRecord impRecord = new ImpRecord(logger);
+                    kontoAfsteminger++;
+                    ImpRecord impRecord = new ImpRecord(logger);
 
-                        // impRecord.setTransactionNumber(fields[4]); use SuperPorts
-                        impRecord.setAmount(fields[14]);
-                        // take last 14 digits
-                        impRecord.setAccountNumber(fields[2], false, 14);
+                    impRecord.setAmount(fields[6].Replace("\"", string.Empty).Trim());
+                    // take last 14 digits
+                    impRecord.setAccountNumber(fields[2].Replace("\"", string.Empty).Trim(), false, 14);
 
-                        numberOfSupoerPortRecords++;
-                        impRecord.writeKonto(fileName);
-                    }
+                    numberOfSupoerPortRecords++;
+                    impRecord.writeKonto(fileName);
                 }
 
                 if (kontoAfsteminger > 0) logger.Write("      Konto Afsteminger : " + kontoAfsteminger);
