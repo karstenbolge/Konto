@@ -81,6 +81,10 @@ namespace Converter
             logger.Write("Output directory : " + args[1] + "\\" + date);
 
             string[] banks = Directory.GetDirectories(args[0]);
+            Array.Resize(ref banks, banks.Length + 1);
+            banks[banks.Length - 1] = args[0] + "\\";
+            ImpRecord impRecord = new ImpRecord(logger);
+            impRecord.writeHead(args[1] + "\\" + date, date);
 
             for (int i = 0; i < banks.Length; i++)
             {
@@ -96,7 +100,7 @@ namespace Converter
 
                 for (int j = 0; j < files.Length; j++)
                 {
-                    logger.Write("  Processing : " + files[j].Substring(banks[i].Length + 1));
+                    logger.Write("  Processing : " + files[j].Substring(banks[i].Length));
                     bool success = true;
 
                     string[] lines = System.IO.File.ReadAllLines(files[j]);
@@ -134,12 +138,7 @@ namespace Converter
                     }
                 }
             }
-
-            if (numberOfSupoerPortRecords == 0)
-            {
-                ImpRecord impRecord = new ImpRecord(logger);
-                impRecord.createEmptyFile(args[1] + "\\" + date);
-            }
+            impRecord.writeTail(args[1] + "\\" + date, numberOfSupoerPortRecords);
 
             logger.Write("", true);
             logger.Write("---- Converted successfully ----", true);
