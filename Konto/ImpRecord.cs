@@ -55,7 +55,7 @@ namespace Converter
 
         public String getAccountNumber()
         {
-            return spaces.Substring(0, 14 - accountNumber.Length) + accountNumber;
+            return spaces.Substring(0, 16 - accountNumber.Length) + accountNumber;
         }
 
         public void blankAmount()
