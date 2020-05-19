@@ -1,1 +1,8 @@
 Konto/obj/*
+Konto/bin/Debug/*
+Konto/bin/Release/Konto.exe.config
+Konto/bin/Release/Konto.pdb
+Konto/bin/Release/Konto.vshost.exe
+Konto/bin/Release/Konto.vshost.exe.config
+Konto/bin/Release/Konto.vshost.exe.manifest
+.vs/*
