@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Nordea.cs" />
     <Compile Include="DanskeBank.cs" />
     <Compile Include="DecimalNumber.cs" />
     <Compile Include="DateOnly.cs" />
