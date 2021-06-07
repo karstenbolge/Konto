@@ -64,7 +64,7 @@ namespace Converter
                     else
                     {
                         impRecord.setAmount(fields[4]);
-                        impRecord.setAccountNumber(fields[0], false, 14);
+                        impRecord.setAccountNumber(fields[3], false, 10);
 
                         numberOfSupoerPortRecords++;
                         impRecord.writeKonto(fileName);
